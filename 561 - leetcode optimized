@@ -1,0 +1,21 @@
+class Solution {
+    public int arrayPairSum(int[] nums) {
+        int[] hash = new int[20001];
+        for (int num : nums) {
+            hash[num + 10000]++;
+        }
+        int result = 0;
+        boolean borrow = true; 
+        
+        for (int i = 0; i < hash.length; i++) {
+            while (hash[i] > 0) {
+                if (borrow) {
+                    result += (i - 10000); 
+                }
+                borrow = !borrow; 
+                hash[i]--;
+            }
+        }
+        return result;
+    }
+}
