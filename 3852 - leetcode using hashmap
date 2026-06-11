@@ -1,0 +1,28 @@
+class Solution {
+    public int[] minDistinctFreqPair(int[] nums) {
+        final int inf = Integer.MAX_VALUE;
+
+        Map<Integer, Integer> map = new HashMap<>();
+        int x = inf;
+
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+            x = Math.min(x, num);
+        }
+
+        int xFreq = map.get(x);
+        int minY = inf;
+
+        for (int y : map.keySet()) {
+            if (y > x && map.get(y) != xFreq && y < minY) {
+                minY = y;
+            }
+        }
+
+        if (minY == inf) {
+            return new int[]{-1, -1};
+        }
+        return new int[]{x, minY};
+
+    }
+}
