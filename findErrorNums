@@ -1,0 +1,25 @@
+class Solution {
+    public int[] findErrorNums(int[] nums) {
+        int n = nums.length;
+        Arrays.sort(nums);
+        int[] ans = new int[2];
+        int current = 1;
+        int missing = 0;
+        int dup = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (current == nums[i]) {
+                current++;
+            }
+            
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                dup = nums[i];
+            }
+        }
+        missing = current;
+        ans[0] = dup;
+        ans[1] = missing;
+
+        return ans;
+    }
+}
