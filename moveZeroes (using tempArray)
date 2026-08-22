@@ -1,0 +1,19 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int j = 0;
+       int n = nums.length;
+       int[] tempArray = new int[n];
+        int temp = 0;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != 0) {
+                tempArray[j] = nums[i];
+                j++;
+            }else if (i < n) {
+                tempArray[i] = 0;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            nums[i] = tempArray[i];
+        }
+    }
+}
