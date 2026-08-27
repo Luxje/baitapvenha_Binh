@@ -1,0 +1,32 @@
+class Solution {
+
+
+    public int romanToInt(String s) {
+        int ans = 0;
+        int n = s.length();
+
+        for (int i = 0; i < n; i++) {
+            int current = getValue(s.charAt(i));
+            if (i < n - 1 && current < getValue(s.charAt(i + 1))) {
+                ans -= current;
+            }else {
+                ans += current;
+            }
+        }
+        return ans;
+
+    }
+
+    public int getValue(char h) {
+        return switch (h) {
+            case 'I' -> 1;
+            case 'V' -> 5;
+            case 'X' -> 10;
+            case 'L' -> 50;
+            case 'C' -> 100;
+            case 'D' -> 500;
+            case 'M' -> 1000;
+            default -> 0;
+        };
+    }
+}
